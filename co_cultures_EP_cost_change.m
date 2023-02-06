@@ -30,8 +30,8 @@ f5 = figure(5);
 
 %% initial conditions
 ic_tot = 0.01; % total cell density in IC
-Aic = 0.005; Nic = 50; % MSbg
-% Aic = 0.5; Nic = 0; % MSgg
+% Aic = 0.005; Nic = 50; % MSbg
+Aic = 0.5; Nic = 0; % MSgg
 
 for ww = 1:length(wt_frac_col)
     wt_frac = wt_frac_col(ww);
@@ -90,17 +90,20 @@ for ww = 1:length(wt_frac_col)
     plot(rel_cost_int(EP_cost_col == 1),100 - 100*WT_frac_end(EP_cost_col == 1), 'o','color', col(ww,:), 'MarkerFaceColor',  'r')
     xlabel('avg. relative EP production cost, $C_{rel}$', 'interpreter', 'latex')
     ylabel('Final $\Delta 8$', 'interpreter', 'latex')
+    rel_cost_chi_fixed(ww) = rel_cost_int(EP_cost_col == 1);
    
 %     xlim([0,0.3])
 
     
+    
+   
     %% visualisation of total cost vs yield
     figure(f1);
     hold on
     grid on
     plot(tot_cost,yield, '--o')
-    xlabel('avg. total EP production cost, $C_{tot}$', 'interpreter', 'latex')
-    ylabel('Yield', 'interpreter', 'latex') 
+%     xlabel('avg. total EP production cost, $C_{tot}$', 'interpreter', 'latex')
+%     ylabel('Yield', 'interpreter', 'latex') 
     pbaspect([1 1 1])
     set(f1,'Windowstyle','normal')
     set(findall(f1,'-property','FontSize'),'FontSize',11)
@@ -152,6 +155,17 @@ figure(f2)
 leg = legend(p,'location','southeast');
 % set(leg, 'Interpreter', 'latex')
 set(f2,'Windowstyle','normal')
-set(findall(f2,'-property','FontSize'),'FontSize',11)
+set(findall(f2,'-property','FontSize'),'FontSize',10)
 set(f2,'Units','centimeters')
-set(f2,'Position',[18 1 11.4 13])
+set(f2,'Position',[18 1 10.6 6.5])
+legend boxoff
+set(gca,'xticklabels',[])
+set(gca,'yticklabels',[])
+
+%% visualisation inital D8 vs relative cost for fixed chi
+f10 = figure(10);
+hold on 
+grid on
+plot(1-wt_frac_col, rel_cost_chi_fixed, '--o')
+xlabel("$\Delta 8$ initial fraction", 'interpreter', 'latex')
+ylabel('avg. relative EP production cost, $C_{rel}$', 'interpreter', 'latex')
