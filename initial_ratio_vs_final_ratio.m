@@ -17,7 +17,7 @@ run("parameters.m") % load parameters from file
 A0_col = [0.5,0.005]; % growth media definition
 N0_col = [0,50];
 title_col = ["MS-Ga+Gly", "MS-BSA+Gly"];
-icwt = 0:5:100; % range of initial WT percentage
+icwt = [1,5:5:95,99]; % range of initial WT percentage
 % icwt = [5,20,50,70,90,95]; % range of initial WT percentage
 
 tmax = 100;
@@ -69,16 +69,16 @@ for rr = 1:length(A0_col) % loop through all growth media
     %% figure final WT % vs initial WT %
     figure(f1)
     hold on
-    p1(rr) = plot(100 - icwt,100 - 100*wt_frac, '--o','color', col1(rr,:), 'DisplayName', title_col(rr));
+    p1(rr) = plot(100 - icwt,(100 - 100*wt_frac)./(100 - icwt), '--o','color', col1(rr,:), 'DisplayName', title_col(rr));
     
 end
 figure(f1)
 % legend(p1,'location', 'northwest')
 xlabel('Initial \Delta8 %')
-ylabel('Final \Delta8 %')
+ylabel('\Delta8 relative fitness %')
 grid on
 xticks([0,25,50,75,100])
-yticks([0,25,50,75,100])
+% yticks([0,25,50,75,100])
 set(f1,'Windowstyle','normal')
 set(findall(f1,'-property','FontSize'),'FontSize',10.5)
 set(f1,'Units','centimeters')

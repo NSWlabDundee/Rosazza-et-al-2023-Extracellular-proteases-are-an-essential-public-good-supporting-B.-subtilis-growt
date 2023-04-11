@@ -20,3 +20,5 @@ All code is provided through GNU General Public License v3.0. Please see the lic
 
 "ExtracellularProteasesPublicGood.ipynb" regroup the JupyterNotebook code that have been used to analyse and visualise data presented in this paper.
 
+"initial_WT_vs_yield_final_WT_experimental.m" visualises the experimental data stored in the "Data_repo" folder and shown in Fig. 5
+
